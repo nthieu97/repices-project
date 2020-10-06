@@ -1,0 +1,16 @@
+<img [src]="detailRepice?.image" class="img-fluid" alt="">
+<h1>{{detailRepice?.name}}</h1>
+<div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" (click)="showDropdown()" type="button">
+    Manager Repice <i class="fas fa-caret-down"></i>
+  </button>
+  <div [ngClass]="{'dropdown-menu':true ,show:show}" >
+    <a class="dropdown-item" >To shopping list</a>
+    <a class="dropdown-item" (click)="handleEdit(index)" >Edit Repice</a>
+    <a class="dropdown-item" (click)="handleDelete(index)">Delete Repice</a>
+  </div>
+</div>
+<p>{{detailRepice?.desc}}</p>
+<ul class="list-group">
+  <li *ngFor="let ing of detailRepice?.ingredient" class="list-group-item ">{{ing.foodname +' - '+ing.quanity}}</li>
+</ul>

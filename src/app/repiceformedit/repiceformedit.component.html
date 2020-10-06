@@ -1,0 +1,24 @@
+<form [formGroup]="repicesForm" (ngSubmit)="onSubmit(repicesForm.value)">
+  <div class="form-group d-flex">
+    <button type="submit" [disabled]="!repicesForm.valid" class="btn btn-success">Save</button>
+    <a class="btn btn-danger" (click)="deleteRepices()">Delete</a>
+  </div>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" formControlName="name" class="form-control"  placeholder="Enter Name">
+  </div>
+  <div class="form-group">
+    <label for="image">Image URL</label>
+    <input type="text" class="form-control" formControlName="image"  placeholder="Enter ImgaeURL">
+    <img *ngIf="repicesForm.controls.image?.value" [src]="repicesForm.controls.image.value" alt="" >
+  </div>
+  <div class="form-group">
+    <label for="desc">Description</label>
+    <textarea  cols="30" rows="10" class="form-control" formControlName="desc"></textarea>
+  </div>
+  <div class="form-group d-flex " *ngFor="let item of repicesForm.controls.ingredient['controls']" formArrayName="ingredient">
+    <input class="form-control mx-2" type="text" [formControl]="item.controls.foodname">
+    <input class="form-control mx-2" type="number" [formControl]="item.controls.quanity">
+  </div>
+  <a  class="btn btn-success"  (click)="addIngredient()">Add Ingredient</a>
+</form>
